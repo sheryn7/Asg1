@@ -2,40 +2,52 @@ using UnityEngine;
 
 public class NewComponent : MonoBehaviour
 {
-
+    // // Task 1: Move object along Z-axis
     // Vector3 valueToMove = new Vector3(0, 0, 0.01f); // moving Z-axis
-    Vector3 valueToMove = new Vector3(0.01f, 0, 0); // moving X-axis
 
-    // Update is called once per frame
-    void Update()
+    // // Task 2: Object reaches certain amt then will move opp direction
+    // // Update is called once per frame
+    // void Update()
+    // {
+    //     transform.localPosition += valueToMove;
+
+    //     // if too far forward
+    //     if (transform.localPosition.z > 5)
+    //     {
+    //         valueToMove.z = -0.01f;     // moves object backwards
+    //     }
+
+    //     // if too far backward
+    //     if (transform.localPosition.z < -5)
+    //     {
+    //         valueToMove.z = 0.01f;      // moves object forward
+    //     }
+
+        // Task 3: Rotation
+        Vector3 rotationValue = new Vector3(0, 1f, 0);
+
+        void Update()
     {
-        transform.localPosition += valueToMove;
+        transform.localEulerAngles += rotationValue;
 
-        // // if too far forward
-        // if (transform.localPosition.z > 5)
-        // {
-        //     valueToMove.z = -0.01f;     // moves object backwards
-        // }
-
-        // // if too far backward
-        // if (transform.localPosition.z < -5)
-        // {
-        //     valueToMove.z = 0.01f;      // moves object forward
-        // }
-
-        // changing direction to X (Task 2)
-        if (transform.localPosition.x > 5)
+        // if rotate too far to the right side,
+        if (transform.localEulerAngles.y > 180)
         {
-            valueToMove.x = -0.01f;    
+            rotationValue.y = -1f;
         }
 
-        if (transform.localPosition.x < -5)
+        // if rotate too far to the left side,
+        if (transform.localEulerAngles.y < 10)
         {
-            valueToMove.x = 0.01f;     
+            rotationValue.y = 1f;
         }
 
-        print(transform.localPosition.x);
-        print(transform.localPosition.y);
-        print(transform.localPosition.z);
+        print(transform.localEulerAngles.y);
     }
 }
+
+//         print(transform.localPosition.x);
+//         print(transform.localPosition.y);
+//         print(transform.localPosition.z);
+//     }
+// }
