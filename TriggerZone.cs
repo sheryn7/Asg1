@@ -4,7 +4,8 @@ public class TriggerZone : MonoBehaviour
 {
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.name == "Player")
+        print("Entered trigger by: " + other.gameObject.name);
+        print("Collectibles left: " + NewObject.collectiblesLeft);
         {
             if (NewObject.collectiblesLeft == 0)
             {
