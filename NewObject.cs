@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 public class NewObject : MonoBehaviour
 {
     public int collCount = 0;
+    public int currentScore = 0;
 
     GameObject currentCollectible;
 
@@ -30,10 +31,16 @@ public class NewObject : MonoBehaviour
 
         if(currentCollectible != null)
         {
-            Destroy(currentCollectible);
+            CollectibleScore scoreScript = currentCollectible.GetComponent<CollectibleScore>();
+
+            currentScore += scoreScript.scoreValue;
             collCount++;
 
             print("Collected " + collCount);
+            print("Current Score: " + currentScore);
+
+            Destroy(currentCollectible);
+            currentCollectible = null;
         }
     }
 }
