@@ -1,28 +1,47 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class NewObject : MonoBehaviour
 {
-    public static int collectiblesLeft = 0;
+    public int collCount = 0;
 
-    void Start()
-    {
-        collectiblesLeft++;     // count object when scene starts
-    }
+    GameObject currentCollectible;
 
     void OnCollisionEnter(Collision collision)
     {
-        print("Collision detected with " + collision.gameObject.name);
-
-        // Task 1: Player touch object = object disappears
-        if(collision.gameObject.name == "Player")
+        print("Player collided with " + collision.gameObject.name);
+        if(collision.gameObject.tag.Contains("Collectible"))
         {
-            collectiblesLeft--;     // reduce count when collected
-            Destroy(gameObject);
+            currentCollectible = collision.gameObject;
         }
     }
 
-    // void OnCollisionStay(Collision collision)
-    // {
-    //     print("Colliding with " + collision.gameObject.name);
-    // }
+    void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.tag == "GoalArea" && collCount >= 7)
+        {
+            print("Player entered trigger zone with " + collCount + "collectibles");
+        }
+    }
+
+    void Update()
+    {
+        if (Keyboard.current.eKey.wasPressedThisFrame)
+        {
+            OnInteract();
+        }
+    }
+
+    void OnInteract()
+    {
+        print("Player wants to interact");
+
+        if(currentCollectible != null)
+        {
+            Destroy(currentCollectible);
+            collCount++;
+
+            print("Collected " + collCount);
+        }
+    }
 }

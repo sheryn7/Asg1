@@ -4,16 +4,17 @@ public class TriggerZone : MonoBehaviour
 {
     void OnTriggerEnter(Collider other)
     {
-        print("Entered trigger by: " + other.gameObject.name);
-        print("Collectibles left: " + NewObject.collectiblesLeft);
+        NewObject playerScript = other.GetComponent<NewObject>();
+
+        if(playerScript != null)
         {
-            if (NewObject.collectiblesLeft == 0)
+            if(playerScript.collCount >= 2)
             {
                 print("You collected all collectibles!");
             }
             else
             {
-                print("Collect all objects first");
+                print("Collect all collectibles first");
             }
         }
     }
