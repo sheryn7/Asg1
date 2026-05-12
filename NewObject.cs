@@ -16,14 +16,6 @@ public class NewObject : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter(Collider other)
-    {
-        if(other.gameObject.tag == "GoalArea" && collCount >= 7)
-        {
-            print("Player entered trigger zone with " + collCount + "collectibles");
-        }
-    }
-
     void Update()
     {
         if (Keyboard.current.eKey.wasPressedThisFrame)
